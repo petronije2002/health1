@@ -1,0 +1,110 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav role="navigation">
+
+        <mat-nav-list>
+            <mat-list>
+                <h4> Main</h4>
+
+
+
+                <a mat-list-item [routerLink]="'/accounts'"> Accounts </a>
+
+                <a mat-list-item [routerLink]="'/create-account'"> Create Account </a>
+
+                <a mat-list-item [routerLink]="'/contacts'"> Contacts </a>
+
+            </mat-list>
+        </mat-nav-list>
+
+        <mat-nav-list>
+
+            <mat-list class="body-1">
+                <h4>Not Main</h4>
+
+                <a mat-list-item [routerLink]="'/create-contact'"> Create Contact </a>
+
+                <a mat-list-item [routerLink]="'/activities'"> Activities </a>
+
+                <a mat-list-item [routerLink]="'/create-activity'"> Create Activity </a>
+
+
+            </mat-list>
+        </mat-nav-list>
+        
+
+        <mat-nav-list>
+
+            <mat-list>
+                <h4> 
+                    <a  (click)="sidenav.toggle()" href="" >Close</a>
+
+
+                </h4>
+                
+
+
+            </mat-list>
+        </mat-nav-list>
+
+
+
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button fxHide.gt-xs mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+
+            <button mat-menu-item fxFlex.xs="90%" fxFlex.gt-xs="10%" fxLayoutAlign="center center">
+                <a routerLink='/home'>
+                    <img width="48" height="48" src="./../../assets/LogoBarPassCircle.png">
+                </a>
+            </button>
+
+            <div fxFlex fxHide.xs>
+                <button mat-button [matMenuTriggerFor]="belowMenu">Menu</button>
+
+                <mat-menu #belowMenu="matMenu" yPosition="below" class="dropDown">
+                    <button mat-menu-item routerLink='/adminsite' routerLinkActive="mat-accent">Admin Page</button>
+                    <button mat-menu-item routerLink="qrgen" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}"> QR Code Generator</button>
+                    <button mat-menu-item routerLink='/registration' routerLinkActive="active">Promotion</button>
+                    <button mat-menu-item routerLink='' routerLinkActive="active">Menu Builder</button>
+                </mat-menu>
+
+                <button mat-button [matMenuTriggerFor]="belowMenu">Register</button>
+                <mat-menu #belowMenu="matMenu" yPosition="below">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+
+                <button mat-button [matMenuTriggerFor]="belowMenu">About Us</button>
+                <mat-menu #belowMenu="matMenu" yPosition="below">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+            </div>
+
+
+            <div fxFlex fxLayoutAlign="end end" class="avatar">
+
+                <button color="white" class="intialsButton" *ngIf="isAdmin" mat-mini-fab
+                    [matMenuTriggerFor]="loggmenu">{{initials}}</button>
+                <mat-menu #loggmenu="matMenu" yPosition="below" class="dropDown">
+                    <!-- <button mat-menu-item routerLink='/previewMenu' routerLinkActive="active">Role</button> -->
+                    <button mat-menu-item>SignOut</button>
+                </mat-menu>
+            </div>
+        </mat-toolbar>
+
+        <main>
+
+            <router-outlet></router-outlet>
+
+        </main>
+
+
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

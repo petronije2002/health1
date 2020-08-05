@@ -1,0 +1,36 @@
+button:hover,
+button:active{
+
+    color: #854DFF;
+    // background-color: #854DFF;
+
+}
+
+
+
+mat-sidenav-container,mat-sidenav-content{
+
+    height: 100%;
+}
+
+mat-sidenav{
+    width: 200px;
+    border: thin;
+}
+
+mat-sidenav-content{
+
+     background-image: url('./../../assets/better_background.png'); 
+     background-position: center;
+     background-size: cover;
+}
+mat-list{
+    
+    padding: 10px;
+}
+
+// ::ng-deep .dropDown{
+
+//     background-color: cornflowerblue !important;
+//     color:white !important
+//   }

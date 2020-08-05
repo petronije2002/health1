@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "robust-delight-184620": {
+      "hosting": {
+        "health1": [
+          "robust-delight-184620"
+        ]
+      }
+    }
+  }
+}

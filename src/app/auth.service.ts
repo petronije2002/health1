@@ -19,6 +19,7 @@ import { AngularFireAuthGuard, hasCustomClaim, customClaims } from '@angular/fir
 import { pipe } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Route } from '@angular/compiler/src/core';
 
 
 // const adminRole = () => { return hasCustomClaim('role') };
@@ -47,9 +48,14 @@ export class AuthService implements OnInit {
 
   public isAdmin: boolean = false
   public isLogged: boolean = false
-  public isSignedOut: boolean = false
+
+  public initials: string = ''
 
   public userName: string = 'visitor'
+
+  public restaurantName : string = ''
+
+
 
   public customToken: string =''
 
@@ -62,76 +68,15 @@ export class AuthService implements OnInit {
     public auth: AngularFireAuth,
     private dialog: MatDialog,
     public storage: AngularFireStorage
-  ) { }
+  ) { 
+    this.auth.onAuthStateChanged((usr)=>{
+      if(usr){
+        console.log("USER IS LOGGED IN")
+      }else{
+        console.log("USER IS SIGNED OUT")
+      }
+    },error=>{console.log("LOGIN ERROR", error)})
 
-
-  
-  downloadFile(){
-
-    let restID = sessionStorage.getItem('restaurantID')
-
-    // let ref1 = this.storage.storage.ref(restID).child('images').child('document.png')
-
-    setTimeout(()=>{
-
-      let ref1 = this.storage.storage.ref(restID).child('images').child('document.png')
-
-      ref1.getDownloadURL().then((url_)=>{console.log("you can download",url_);
-      
-      return this.urlDownload.next(url_)
-      });
-
-      
-
-
-    },500)
-
-
-    
-
-
-    // let restID = sessionStorage.getItem('restaurantID')
-
-    // console.log("RestID", restID)
-
-
-    // let ref1 = this.storage.storage.ref(restID).child('images').child('burger-3-2.jpg')
-
-    // setTimeout(()=>{
-    //   ref1.getDownloadURL().then((url_)=>{console.log("you can download",url_);
-
-    //   let header_ = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'})
-
-
-    //   header_  = header_.set("origin", ["*"])
-
-
-
-
-    //   // header_.set( "origin", ["*"])
-    //   header_.set("method", ["GET"])
-    //   header_.set("maxAgeSeconds",'3600')
-
-      
-    
-    //   this.hhtp.get(url_,{headers: header_}).subscribe((file)=>{
-    //     console.log("This isthe file", file)
-    //   })
-      
-    //   return url_
-    
-    //   }).catch(error=>console.log(error))
-    // },500)
-
-    
-  
-
-    // console.log( "gs://robust-delight-184620.appspot.com/" + sessionStorage.getItem('restaurantID')+'/'+'promoImg'+'/'+'burger-3.jpg')
-    // var pathReference = this.storage.ref(sessionStorage.getItem('restaurantID')+'/'+'promoImg'+'/'+'burger-3.jpg');
-    // ref.getDownloadURL().subscribe(el=>{console.log("What is this",el)})
-  }
-
-  checkIfLogged(){
 
     this.auth.user.subscribe(usr=>{
 
@@ -160,24 +105,24 @@ export class AuthService implements OnInit {
 
 
         this.userName = tmp_dec.userName
+        this.initials = this.userName.split(" ").map((n)=>n[0]).join(".")
+
+        this.restaurantName = tmp_dec.restaurantName
 
 
         console.log("UNANME", tmp_dec.userName)
 
 
 
-        this.emitCurrentLogin()
+       
 
         console.log(jwt_decode(tok1))
       })}
 
      })
 
-
-    
   }
-
-
+  
   openDialog(text_?: string,) {
 
     const dialogConfig = new MatDialogConfig();
@@ -206,14 +151,19 @@ export class AuthService implements OnInit {
     this.auth.signInWithCustomToken(costomToken_).then(usr => {
 
       let decoded_ = jwt_decode(costomToken_)
-      console.log(decoded_)
       this.userName = decoded_.claims.userName
+
+      this.initials = this.userName.split(" ").map((n)=>n[0]).join(".")
+
+      
 
       sessionStorage.setItem('restaurantID',decoded_.claims.restaurantID)
       sessionStorage.setItem('restaurantName',decoded_.claims.restaurantName)
       sessionStorage.setItem('role',decoded_.claims.role)
       sessionStorage.setItem('userName',decoded_.claims.userName)
       sessionStorage.setItem('regDomain',decoded_.claims.regDomain)
+
+      this.restaurantName = decoded_.claims.restaurantName
       
       if(decoded_.claims.role==='admin' || decoded_.claims.role=='owner'){
 
@@ -221,125 +171,33 @@ export class AuthService implements OnInit {
       }
 
       this.isLogged = true
-      this.isSignedOut= false
-
-      this.emitCurrentLogin()
+     
 
     })
   }
 
-
-  requestToken(): Observable<string> {
-
-    let tmp_token_req: tokenRequest = {
-      uid: sessionStorage.getItem('uniqueID'),
-      restaurantID: sessionStorage.getItem('restaurantID'),
-      restaurantName: sessionStorage.getItem('restaurantName'),
-      tableNumber: sessionStorage.getItem('tableNumber'),
-      date: new Date().toDateString()
-    }
-    return this.hhtp.post<string>(environment.backendURL + '/returnToken', tmp_token_req)
-  }
-
-
-  setParameters(){
-    this.parametersSubscription = this.route.queryParams.subscribe(parm => {
-      console.log("THESE ARE URL PARAMETERs", parm)
-      console.log(sessionStorage.getItem('token') )
-      if (Object.keys(parm).length == 3) {
-        let aaaa = JSON.stringify(parm)
-        sessionStorage.setItem('urlParameters', aaaa)
-        // setTimeout(()=>{},200);
-        let tmp_id = new DeviceUUID().get()
-        sessionStorage.setItem('uniqueID', tmp_id)
-      }
-      else{
-
-        console.log("NO PARAMETERS")
-
-        // this.openDialog("Please scan QR code")
-        sessionStorage.setItem('urlParameters',null)
-        let tmp_id = new DeviceUUID().get()
-        sessionStorage.setItem('uniqueID', tmp_id)
-      
-      }
-    })
-
- 
-  }
-
-
-  loginWithToken() {
-
-    let result: boolean
-    this.auth.signInWithCustomToken(sessionStorage.getItem('customTokenVisitor')).then(usr => {
-      console.log("LOGGED USER", usr );
-      console.log(sessionStorage.getItem('restaurantID'),sessionStorage.getItem('deviceID'))
-
-      this.documentSubscription = this.db.collection('restaurants').doc(sessionStorage.getItem('restaurantID')).collection('registrations').doc('visitors').collection(new Date().toDateString()).doc(sessionStorage.getItem('deviceID')).valueChanges().subscribe((el1) => {
-        
-        if(typeof el1 !== 'undefined' ){
-        console.log("Read document",el1)
-        result = true
-
-        this.ifDocument.next(result)}
-        else{
-
-          this.ifDocument.next(false)
-
-        }
-      
-    },error=>{
-      
-      console.log(error);
-
-      result = false
-      this.ifDocument.next(result)
-      
-      })
-
-
-
-  
-  })
-
-  
-
-  }
   
   ngOnInit() {}
 
-  emitCurrentLogin() {
-    let tmp_ee: event_ = {
-      isAdmin: this.isAdmin,
-      isLogged: this.isLogged,
-      userName: this.userName,
-      isSignedOut: this.isSignedOut,
-      restaurantName: sessionStorage.getItem('restaurantName')
-    }
-
-    this.logEmitter.next(tmp_ee)
-  }
 
   signOut() {
 
-    this.tokenSubscription.unsubscribe()
-
-    let tmp_ee: event_ = {
-      isAdmin: false,
-      isLogged: false,
-      isSignedOut: true
-    }
-
-    this.logEmitter.next(tmp_ee)
+    this.isAdmin=false
+    this.isLogged = false
+    this.restaurantName=''
+    this.auth.signOut()
 
     sessionStorage.clear()
-    // return this.auth.signOut()
 
-      
-    // .catch(error => { console.log('there was an error') }).finally( ()=>this.router.navigate(['']))
+    this.router.navigateByUrl('/home')
+    
+    
 
   }
+
+
+
+
 
 
 

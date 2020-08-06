@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
@@ -8,11 +9,10 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 })
 export class DialogComponent implements OnInit {
   description:string;
-  isSpinner: boolean = false
 
 
 
-  constructor(
+  constructor(private router: Router,
     private dialogRef: MatDialogRef<DialogComponent>,
         @Inject(MAT_DIALOG_DATA) data) {
 
@@ -26,6 +26,14 @@ export class DialogComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+}
+navigate(){
+
+  // this should be nagiated to reset password component
+  this.router.navigateByUrl('passwordresset')
+  this.dialogRef.close();
+
+
 }
 
 }

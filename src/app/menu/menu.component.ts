@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,24 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(public srv: AuthService) { }
 
   color
 
-  initials="P.J"
   isAdmin = true
   
   ngOnInit(): void {
   }
 
-
-  toggleColor(event_){
-
-    if( this.color === 'red' )
-      {this.color = 'blue';}
-    else
-      {this.color = 'red';}
-  
-  }
 
 }

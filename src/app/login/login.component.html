@@ -1,0 +1,72 @@
+<div class="welcome" >
+</div>
+
+  <form [formGroup]="form_" [@fading1]="fading ? 'fadeIn' : 'fadeOut'">
+    <div fxFlex="25%" fxFlex.lt-md="10%"></div>
+
+    <div  class="backGrLogin" fxFlex="50%"  fxFlex.lt-md="80%" fxLayout="column" fxLayoutAlign="center stretch" *ngIf="this.srv.isLogged==false">
+
+      <mat-form-field fxFlex >
+
+        <mat-placeholder>Your username, please.</mat-placeholder>
+        
+        <input matInput   type="email" formControlName="username" >
+
+        <mat-error *ngIf="form_.controls['username'].hasError('email') && !form_.controls['username'].hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="form_.controls['username'].hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+
+      </mat-form-field>
+      <br>
+
+      <mat-form-field fxFlex matFormField>
+
+        <mat-placeholder>Your password, please.</mat-placeholder>
+
+        <input matInput type="password" formControlName="password" >
+
+        <mat-error *ngIf="form_.controls['password'].hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+
+      </mat-form-field>
+      <br>
+
+      <div fxFlex>
+        <button mat-raised-button color="accent" (click)="submitForm()" [disabled]="!form_.valid">Login</button>
+        <button mat-raised-button color="white" (click)="resetForm()">Cancel</button>
+      </div>
+    </div>
+
+  </form> 
+
+  <br>
+  <br>
+
+  <!-- <div fxLayout="row">
+    <div fxFlex="25%"></div>
+  
+  
+    <div class="warning" fxFlex="50%" fxLayout="row" fxLayout.lt-md="column" fxFlexAlign="space-between center">
+  
+      <div fxFlex="50">
+        <button mat-button (click)="tryAgain()" *ngIf="resetPassword"> Please try again?
+        </button>
+      </div>
+      <br>
+  
+  
+  
+  
+      <div fxFlex>
+        <button mat-button color="warn" (click)="resetPasswordFunction()" *ngIf="resetPassword"> Password reset ?
+        </button>
+      </div>
+  
+    </div>
+
+  </div> -->
+

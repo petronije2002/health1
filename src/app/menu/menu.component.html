@@ -7,11 +7,11 @@
 
 
 
-                <a mat-list-item [routerLink]="'/accounts'"> Accounts </a>
+                <a mat-list-item [routerLink]="['/home']"> Accounts </a>
 
-                <a mat-list-item [routerLink]="'/create-account'"> Create Account </a>
+                <a mat-list-item [routerLink]="['/qrgen']"> Create Account </a>
 
-                <a mat-list-item [routerLink]="'/contacts'"> Contacts </a>
+                <a mat-list-item [routerLink]="['/qrgen']"> Contacts </a>
 
             </mat-list>
         </mat-nav-list>
@@ -21,11 +21,11 @@
             <mat-list class="body-1">
                 <h4>Not Main</h4>
 
-                <a mat-list-item [routerLink]="'/create-contact'"> Create Contact </a>
+                <a mat-list-item [routerLink]="['/qrgen']"> Create Contact </a>
 
-                <a mat-list-item [routerLink]="'/activities'"> Activities </a>
+                <a mat-list-item [routerLink]="['/qrgen']"> Activities </a>
 
-                <a mat-list-item [routerLink]="'/create-activity'"> Create Activity </a>
+                <a mat-list-item [routerLink]="['/qrgen']"> Create Activity </a>
 
 
             </mat-list>
@@ -66,43 +66,49 @@
                 <button mat-button [matMenuTriggerFor]="belowMenu">Menu</button>
 
                 <mat-menu #belowMenu="matMenu" yPosition="below" class="dropDown">
-                    <button mat-menu-item routerLink='/adminsite' routerLinkActive="mat-accent">Admin Page</button>
-                    <button mat-menu-item routerLink="qrgen" routerLinkActive="active"
-                        [routerLinkActiveOptions]="{exact: true}"> QR Code Generator</button>
-                    <button mat-menu-item routerLink='/registration' routerLinkActive="active">Promotion</button>
+                    <button mat-menu-item [routerLink]="['/home']" routerLinkActive="active">Admin Page</button>
+                    <button mat-menu-item [routerLink]="['/qrgen']" routerLinkActive="active"> QR Code Generator</button>
+                    <button mat-menu-item [routerLink]="['/home']" routerLinkActive="active">Promotion</button>
                     <button mat-menu-item routerLink='' routerLinkActive="active">Menu Builder</button>
                 </mat-menu>
 
-                <button mat-button [matMenuTriggerFor]="belowMenu">Register</button>
+                <!-- <button mat-button [matMenuTriggerFor]="belowMenu">Register</button>
                 <mat-menu #belowMenu="matMenu" yPosition="below">
                     <button mat-menu-item>Item 1</button>
                     <button mat-menu-item>Item 2</button>
-                </mat-menu>
+                </mat-menu> -->
 
-                <button mat-button [matMenuTriggerFor]="belowMenu">About Us</button>
+                <!-- <button mat-button [matMenuTriggerFor]="belowMenu">About Us</button>
                 <mat-menu #belowMenu="matMenu" yPosition="below">
                     <button mat-menu-item>Item 1</button>
                     <button mat-menu-item>Item 2</button>
-                </mat-menu>
+                </mat-menu> -->
             </div>
+
+            <div  fxFlex="50%" fxLayoutAlign="center center"> {{this.srv.restaurantName}}</div>
 
 
             <div fxFlex fxLayoutAlign="end end" class="avatar">
 
-                <button color="white" class="intialsButton" *ngIf="isAdmin" mat-mini-fab
-                    [matMenuTriggerFor]="loggmenu">{{initials}}</button>
+                <button color="white" class="intialsButton" *ngIf="this.srv.isAdmin" mat-mini-fab
+                    [matMenuTriggerFor]="loggmenu">{{this.srv.initials}}</button>
+
                 <mat-menu #loggmenu="matMenu" yPosition="below" class="dropDown">
                     <!-- <button mat-menu-item routerLink='/previewMenu' routerLinkActive="active">Role</button> -->
-                    <button mat-menu-item>SignOut</button>
+                    <button mat-menu-item (click)="this.srv.signOut()">SignOut</button>
                 </mat-menu>
+
+                <button mat-button *ngIf="!this.srv.isLogged" routerLink='/login'>
+                    <mat-icon>login</mat-icon>
+                </button>
             </div>
         </mat-toolbar>
 
-        <main>
+        
 
             <router-outlet></router-outlet>
 
-        </main>
+       
 
 
 

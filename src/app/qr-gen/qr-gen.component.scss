@@ -1,0 +1,128 @@
+.welcome{
+    padding-top: 80px;
+}
+
+
+
+// #search-form {
+
+//     font-size: larger;
+//     font-weight: 700;
+//     color: white;
+    
+
+//     .mat-select-value-text {
+//         color: white;
+//     }
+    
+
+
+
+//     .mat-select-underline {
+//         color: white;
+//     }
+
+//     .mat-form-field.ng-dirty.ng-invalid .mat-form-field-label {
+//         color: red;
+//       }
+    
+
+
+//     .mat-form-field-underline {
+//      color: red;
+//       background-color: white;
+//     }
+//     .mat-form-field-ripple {
+//      color: red;
+//       background-color: red;
+//     }
+//     .placeholder {
+//       color: white;
+//     }
+
+//     mat-placeholder{
+//         font-size: 12px !important;
+//         color: white;
+//         font-weight: 700;
+//     }
+
+//     mat-label{
+//         font-size: 12px;
+//         color: white;
+//         font-weight: 700;
+//     }
+//     mat-select{
+
+//       .mat-select-underline{
+//         color: white;
+//       }
+
+        
+        
+//         color:  white
+//     }
+
+//     mat-select:active{
+//         color: white;
+//     }
+    
+//   }
+
+  
+
+
+.backGrQrGen{
+  background-color: white;
+  opacity: 0.6;
+  border-radius: 5px;
+  padding: 20px;
+  color: rgb(55, 59, 77);
+
+
+  font-weight: 700;
+  font-size: larger;
+}
+
+mat-form-field{
+
+  color: rgb(55, 59, 77);
+
+
+  font-weight: 700;
+  font-size: larger;
+  
+
+}
+mat-placeholder{
+
+  color: rgb(55, 59, 77);
+  font-weight: 500;
+  font-size: medium;
+}
+
+mat-error{
+  // font-weight: 500;
+  // font-size: large;
+  color: rgb(117, 30, 117) !important
+}
+
+mat-select{
+  color: rgb(55, 59, 77);
+  font-weight: 700;
+  font-size: large;
+
+}
+
+mat-option{
+  color: rgb(55, 59, 77);
+  font-weight: 700;
+  font-size: large;
+
+}
+
+input{
+  color: rgb(55, 59, 77) !important;
+  font-weight: 700 !important;
+  font-size: larger !important;
+
+}

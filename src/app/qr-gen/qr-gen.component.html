@@ -1,1 +1,74 @@
-<p>qr-gen works!</p>
+
+
+<div class="welcome">
+
+</div>
+
+
+<form [formGroup]="form_" id="search-form">
+    <div fxFlex="33%" fxFlex.lt-md="10%"></div>
+  
+    <div class='backGrQrGen' fxFlex="33%" fxFlex.lt-md="80%" fxLayout="column" fxLayoutAlign="center stretch">
+  
+      <mat-form-field fxFlex>
+        <mat-placeholder >Table Number</mat-placeholder>
+  
+        <input matInput  min="1" max="999"  type="number" formControlName="table_number" class="mat-headline">
+
+        <mat-error >
+          Please enter number < 999
+        </mat-error>
+
+       
+  
+      </mat-form-field>
+      <br>
+
+      <mat-form-field appearance="fill">
+        <mat-label>QR Code size</mat-label>
+        <mat-select  formControlName="size_" name="size_" >
+          <mat-option  value=125 >Small   </mat-option>
+          <mat-option  value=250>Large   </mat-option>
+          
+        </mat-select>
+      </mat-form-field>
+      <br>
+  
+      
+      <div fxFlex >
+        <div fxLayout="row" fxLayoutAlign="center space-around" fxLayoutGap="10px"> 
+        <button  fxFlex mat-raised-button color="accent" (click)="generateQR()" [disabled]="!form_.valid">Generate QR</button>
+        <button  fxFlex   mat-raised-button (click)="resetForm()">Cancel</button>
+      </div>
+      </div>
+    </div>
+  
+  </form>
+
+<br>
+<br>
+
+<div fxLayout="row" fxLayoutAlign="center stretch">
+
+  <div fXFlex="10">
+
+  </div>
+
+
+
+
+  <div fxFlex="80" *ngIf="showCode" fxLayout="column" fxLayoutAlign="center center">
+    <qrcode fxFlex [qrdata]="this.urlData" [width]="form_.value['size_']" [errorCorrectionLevel]="'M'"></qrcode>
+
+
+    <br>
+    <button [ngStyle]="{'margin-bottom': '30px'}" mat-raised-button color="accent" (click)="downloadQrCode()"> Download QR CODE</button>
+    <div  #scrollMe [scrollTop]="600" ></div>
+  </div>
+
+  <div fXFlex="10" >
+
+  </div>
+
+
+</div>

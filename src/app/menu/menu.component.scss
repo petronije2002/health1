@@ -8,21 +8,36 @@ button:active{
 
 
 
-mat-sidenav-container,mat-sidenav-content{
+mat-sidenav-container{
 
     height: 100%;
+    
+
 }
 
+
+
 mat-sidenav{
+    z-index: 5;
     width: 200px;
     border: thin;
 }
 
 mat-sidenav-content{
 
-     background-image: url('./../../assets/better_background.png'); 
-     background-position: center;
-     background-size: cover;
+    position: relative;
+    z-index: 5;
+
+}
+
+
+video{
+   
+    position: fixed;;
+    height: 100%;
+    z-index: 0;
+
+
 }
 mat-list{
     
@@ -34,3 +49,8 @@ mat-list{
 //     background-color: cornflowerblue !important;
 //     color:white !important
 //   }
+
+mat-toolbar{
+    position: fixed;
+    z-index: 9;
+}

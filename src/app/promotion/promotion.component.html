@@ -1,1 +1,38 @@
-<p>promotion works!</p>
+<div class="promo" class="welcome">
+</div>
+
+
+<div class="promo" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-around start" fxLayoutAlign.lt-md="center strech">
+
+    <div class="controls" fxFlex="30%" fxFlex.lt-md="30%" [formGroup]="myForm" (submit)="submit()">
+
+        <div   class="promo" fxLayout="column " fxLayoutAlign="center start" fxLayoutAlign.lt-md="space-evenly center">
+            <div fxFlex="50%" fxLayout="column" class="form_"> 
+
+               
+                
+                <strong> Choose your background image: </strong>
+                <input class="promo" #myInput type="file" (change)="onChange($event)" accept="image/jpeg">
+              
+            </div>
+
+            <br>
+
+            <br>
+            <br>
+
+            <div class="promo" fxFlex>
+                <button   (click)="submit()" [disabled]="myForm.invalid">Submit</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="promo" fxFlex="30%">
+        <img width="100%" [src]="urlSafe">
+    </div>
+
+    <div fxFlex></div>
+</div>

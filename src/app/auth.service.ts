@@ -180,6 +180,28 @@ export class AuthService implements OnInit {
   ngOnInit() {}
 
 
+  downloadFile(){
+
+    let restID = sessionStorage.getItem('restaurantID')
+
+    // let ref1 = this.storage.storage.ref(restID).child('images').child('document.png')
+
+    setTimeout(()=>{
+
+      let ref1 = this.storage.storage.ref(restID).child('images').child('documentBackground.jpg')
+
+      ref1.getDownloadURL().then((url_)=>{console.log("you can download",url_);
+      
+      this.urlDownload.next(url_)
+      });
+
+      
+
+
+    },500)}
+
+
+
   signOut() {
 
     this.isAdmin=false

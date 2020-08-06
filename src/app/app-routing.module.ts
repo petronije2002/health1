@@ -1,3 +1,4 @@
+import { PromotionComponent } from './promotion/promotion.component';
 import { PasswordressetComponent } from './passwordresset/passwordresset.component';
 import { LoginComponent } from './login/login.component';
 import { QrGenComponent } from './qr-gen/qr-gen.component';
@@ -15,6 +16,7 @@ const ownerRole = () => pipe(customClaims, map(claims => claims.role === "owner"
 const routes: Routes = [{path: 'home', component: HomeComponent},
                         {path: 'qrgen', component: QrGenComponent,canActivate: [AngularFireAuthGuard], data: { authGuardPipe: ownerRole}},
                         {path: 'passwordresset', component: PasswordressetComponent},
+                        {path: 'promotion', component: PromotionComponent},
 
                         {path: 'login', component: LoginComponent},
                         {path: '', component: HomeComponent}

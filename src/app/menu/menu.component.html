@@ -3,15 +3,13 @@
 
         <mat-nav-list>
             <mat-list>
-                <h4> Main</h4>
+                <h4> Menu</h4>
 
+                <a mat-list-item [routerLink]="['/home']"> Admin Page </a>
 
+                <a mat-list-item [routerLink]="['/qrgen']"> QR Code Generator </a>
 
-                <a mat-list-item [routerLink]="['/home']"> Accounts </a>
-
-                <a mat-list-item [routerLink]="['/qrgen']"> Create Account </a>
-
-                <a mat-list-item [routerLink]="['/qrgen']"> Contacts </a>
+                <a mat-list-item [routerLink]="['/promotion']"> Promotion </a>
 
             </mat-list>
         </mat-nav-list>
@@ -20,17 +18,11 @@
 
             <mat-list class="body-1">
                 <h4>Not Main</h4>
-
-                <a mat-list-item [routerLink]="['/qrgen']"> Create Contact </a>
-
-                <a mat-list-item [routerLink]="['/qrgen']"> Activities </a>
-
-                <a mat-list-item [routerLink]="['/qrgen']"> Create Activity </a>
-
-
+                <a mat-list-item [routerLink]="['/home']"> To be added</a>
+                <a mat-list-item [routerLink]="['/home']">  To be added </a>
+                <a mat-list-item [routerLink]="['/home']">  To be added </a>
             </mat-list>
         </mat-nav-list>
-        
 
         <mat-nav-list>
 
@@ -40,26 +32,23 @@
 
 
                 </h4>
-                
-
-
+            
             </mat-list>
         </mat-nav-list>
-
-
-
-
     </mat-sidenav>
     <mat-sidenav-content>
+
         <mat-toolbar color="primary">
             <button fxHide.gt-xs mat-icon-button (click)="sidenav.toggle()">
                 <mat-icon>menu</mat-icon>
             </button>
 
-            <button mat-menu-item fxFlex.xs="90%" fxFlex.gt-xs="10%" fxLayoutAlign="center center">
+            <button mat-menu-item fxFlex.xs="90%" fxFlex.gt-xs="10%" fxLayoutAlign="center space-around">
+
                 <a routerLink='/home'>
-                    <img width="48" height="48" src="./../../assets/LogoBarPassCircle.png">
+                <img width="48" height="48" src="./../../assets/LogoBarPassCircle.png">
                 </a>
+                
             </button>
 
             <div fxFlex fxHide.xs>
@@ -68,7 +57,7 @@
                 <mat-menu #belowMenu="matMenu" yPosition="below" class="dropDown">
                     <button mat-menu-item [routerLink]="['/home']" routerLinkActive="active">Admin Page</button>
                     <button mat-menu-item [routerLink]="['/qrgen']" routerLinkActive="active"> QR Code Generator</button>
-                    <button mat-menu-item [routerLink]="['/home']" routerLinkActive="active">Promotion</button>
+                    <button mat-menu-item [routerLink]="['/promotion']" routerLinkActive="active">Promotion</button>
                     <button mat-menu-item routerLink='' routerLinkActive="active">Menu Builder</button>
                 </mat-menu>
 
@@ -104,9 +93,26 @@
             </div>
         </mat-toolbar>
 
+            <div>
+
+                <video autoplay muted  type="video/mp4" loop >
+
+                    <source src="./../../assets/video.mp4" >
+                
+                
+                
+                </video>
+                
+
+                <router-outlet></router-outlet>
+
+            </div>
+
         
 
-            <router-outlet></router-outlet>
+            
+
+
 
        
 

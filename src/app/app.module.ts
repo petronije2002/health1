@@ -31,6 +31,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { ScrollToBottomDirective } from './customDirectives/scrollDerictive.directive';
 import { PasswordressetComponent } from './passwordresset/passwordresset.component';
 import { PromotionComponent } from './promotion/promotion.component';
+import { RegistrationsComponent } from './registrations/registrations.component';
 
 // import { BrowserModule, HammerModule } from '@angular/platform-browser';
 // import { NgModule } from '@angular/core';
@@ -67,7 +68,8 @@ import { PromotionComponent } from './promotion/promotion.component';
     LoginComponent,
     ScrollToBottomDirective,
     PasswordressetComponent,
-    PromotionComponent
+    PromotionComponent,
+    RegistrationsComponent
 
 
 

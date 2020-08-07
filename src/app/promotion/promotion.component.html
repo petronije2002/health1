@@ -6,11 +6,11 @@
 
     <div class="controls" fxFlex="30%" fxFlex.lt-md="30%" [formGroup]="myForm" (submit)="submit()">
 
-        <div   class="promo" fxLayout="column " fxLayoutAlign="center start" fxLayoutAlign.lt-md="space-evenly center">
+        <div   fxLayout="column " fxLayoutAlign="center start" fxLayoutAlign.lt-md="space-evenly center">
+            <div fxFlex="10%"></div>
             <div fxFlex="50%" fxLayout="column" class="form_"> 
 
-               
-                
+     
                 <strong> Choose your background image: </strong>
                 <input class="promo" #myInput type="file" (change)="onChange($event)" accept="image/jpeg">
               

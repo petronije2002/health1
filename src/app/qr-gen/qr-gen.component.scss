@@ -2,9 +2,6 @@
     padding-top: 80px;
 }
 
-.qrCode{
-  z-index: 5;
-}
 
 
 
@@ -129,4 +126,8 @@ input{
   font-weight: 700 !important;
   font-size: larger !important;
 
+}
+
+qrcode{
+  z-index: 1;
 }

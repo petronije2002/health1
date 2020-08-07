@@ -32,3 +32,14 @@ export interface tokenRequest{
       this.file = file;
     }
   }
+
+
+  export interface Registration{
+
+    date_: Date ;
+    phone_: string;
+    email_: string;
+    name_: string
+
+
+  }

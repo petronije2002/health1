@@ -1,15 +1,15 @@
-<mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav role="navigation">
+<mat-sidenav-container class="example-container" (backdropClick)="sidenav.toggle()">
+    <mat-sidenav #sidenav role="navigation"    mode="mode.value">
 
         <mat-nav-list>
             <mat-list>
                 <h4> Menu</h4>
 
-                <a mat-list-item [routerLink]="['/home']"> Admin Page </a>
+                <a mat-list-item [routerLink]="['/home']" (click)="sidenav.toggle()"> Admin Page </a>
 
-                <a mat-list-item [routerLink]="['/qrgen']"> QR Code Generator </a>
+                <a mat-list-item [routerLink]="['/qrgen']"  (click)="sidenav.toggle()"> QR Code Generator </a>
 
-                <a mat-list-item [routerLink]="['/promotion']"> Promotion </a>
+                <a mat-list-item [routerLink]="['/promotion']"  (click)="sidenav.toggle()"> Promotion </a>
 
             </mat-list>
         </mat-nav-list>
@@ -18,9 +18,9 @@
 
             <mat-list class="body-1">
                 <h4>Not Main</h4>
-                <a mat-list-item [routerLink]="['/home']"> To be added</a>
-                <a mat-list-item [routerLink]="['/home']">  To be added </a>
-                <a mat-list-item [routerLink]="['/home']">  To be added </a>
+                <a mat-list-item [routerLink]="['/home']"  (click)="sidenav.toggle()"> To be added</a>
+                <a mat-list-item [routerLink]="['/home']"  (click)="sidenav.toggle()">  To be added </a>
+                <a mat-list-item [routerLink]="['/home']"  (click)="sidenav.toggle()">  To be added </a>
             </mat-list>
         </mat-nav-list>
 
@@ -28,7 +28,7 @@
 
             <mat-list>
                 <h4> 
-                    <a  (click)="sidenav.toggle()" href="" >Close</a>
+                    <a  (click)="sidenav.toggle()"  >Close</a>
 
 
                 </h4>
@@ -36,7 +36,7 @@
             </mat-list>
         </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content >
 
         <mat-toolbar color="primary">
             <button fxHide.gt-xs mat-icon-button (click)="sidenav.toggle()">
@@ -52,7 +52,16 @@
             </button>
 
             <div fxFlex fxHide.xs>
-                <button mat-button [matMenuTriggerFor]="belowMenu">Menu</button>
+                <button mat-button #menuButton [matMenuTriggerFor]="belowMenu" [ngClass]="this.selected == 1 ? 'tab_selected' : 'tab_unselected'" (click)="change(1)">Menu</button>
+
+                <mat-menu #belowMenu="matMenu" yPosition="below" class="dropDown">
+                    <button mat-menu-item [routerLink]="['/home']" routerLinkActive="active">Admin Page</button>
+                    <button mat-menu-item [routerLink]="['/qrgen']" routerLinkActive="active"> QR Code Generator</button>
+                    <button mat-menu-item [routerLink]="['/promotion']" routerLinkActive="active">Promotion</button>
+                    <button mat-menu-item [routerLink]="['/registration']" routerLinkActive="active">Registrations</button>
+                </mat-menu>
+
+                <button mat-button #menuButton [matMenuTriggerFor]="belowMenu" [ngClass]="this.selected == 2 ? 'tab_selected' : 'tab_unselected'" (click)="change(2)">Second Menu</button>
 
                 <mat-menu #belowMenu="matMenu" yPosition="below" class="dropDown">
                     <button mat-menu-item [routerLink]="['/home']" routerLinkActive="active">Admin Page</button>
@@ -60,18 +69,6 @@
                     <button mat-menu-item [routerLink]="['/promotion']" routerLinkActive="active">Promotion</button>
                     <button mat-menu-item routerLink='' routerLinkActive="active">Menu Builder</button>
                 </mat-menu>
-
-                <!-- <button mat-button [matMenuTriggerFor]="belowMenu">Register</button>
-                <mat-menu #belowMenu="matMenu" yPosition="below">
-                    <button mat-menu-item>Item 1</button>
-                    <button mat-menu-item>Item 2</button>
-                </mat-menu> -->
-
-                <!-- <button mat-button [matMenuTriggerFor]="belowMenu">About Us</button>
-                <mat-menu #belowMenu="matMenu" yPosition="below">
-                    <button mat-menu-item>Item 1</button>
-                    <button mat-menu-item>Item 2</button>
-                </mat-menu> -->
             </div>
 
             <div  fxFlex="50%" fxLayoutAlign="center center"> {{this.srv.restaurantName}}</div>
@@ -93,23 +90,21 @@
             </div>
         </mat-toolbar>
 
-            <div>
-
-                <video autoplay muted  type="video/mp4" loop >
-
-                    <source src="./../../assets/video.mp4" >
-                
-                
-                
-                </video>
-                
-
-                <router-outlet></router-outlet>
-
-            </div>
-
         
 
+               
+            <div > 
+                  <video autoplay muted type="video/mp4" loop >
+
+                    <source src="./../../assets/video.mp4" >
+        
+                </video>  
+                
+                <router-outlet></router-outlet> 
+
+            </div>
+        
+           
             
 
 

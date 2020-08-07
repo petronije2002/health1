@@ -1,0 +1,63 @@
+<div class="welcome">
+
+</div>
+
+
+<div fxLayout="row">
+
+  <div class="controls" fxFlex="25%" fxLayout="column" fxLayoutAlign="space-evenly strech">
+    <div fxFlex="10%">
+      <form [formGroup]="form_">
+        <mat-form-field>
+          <mat-placeholder>Registration date</mat-placeholder>
+          <input matInput [matDatepicker]="picker" [min]="startDate" [max]="todayDate" formControlName="date_">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker (ngModelChange)="testFunction()" #picker></mat-datepicker>
+        </mat-form-field>
+      </form>
+    </div>
+    <div fxFlex="10%">
+
+      <br>
+      <br>
+      <br>
+      <br>
+
+      <button mat-raised-button color="accent" (click)="testFunction()" [disabled]="!form_.valid">Get
+        Registrations</button>
+    </div>
+    <div fxFlex></div>
+
+
+  </div>
+
+  <div fxFlex>
+
+    <div class="table">
+      <mat-table  id="ExampleTable" [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="date_">
+          <mat-header-cell *matHeaderCellDef>Registration Date </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.date_.toDate()| date: 'medium'}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name_">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.name_}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email_">
+          <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.email_}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="phone_">
+          <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.phone_}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+</div>

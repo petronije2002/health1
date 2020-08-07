@@ -1,41 +1,38 @@
-button:hover,
-button:active{
+// button:hover,
+// button:active{
 
-    color: #854DFF;
-    // background-color: #854DFF;
+//     color: #854DFF;
 
-}
-
-
+// }
 
 mat-sidenav-container{
-
     height: 100%;
-    
-
 }
 
-
-
 mat-sidenav{
-    z-index: 5;
     width: 200px;
     border: thin;
 }
 
-mat-sidenav-content{
-
-    position: relative;
-    z-index: 5;
-
+.tab_selected {
+    color: #854DFF; 
+    border-radius: 0 px !important;;  
 }
 
+ .mat-button {
+  border-radius: 0 px !important;;     
+} 
 
 video{
-   
-    position: fixed;;
+    position: fixed;
     height: 100%;
     z-index: 0;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    
+    transform: translateX(calc((100% - 100vw) / 2));
 
 
 }
@@ -52,5 +49,6 @@ mat-list{
 
 mat-toolbar{
     position: fixed;
-    z-index: 9;
+    z-index: 3;
 }
+

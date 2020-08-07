@@ -1,3 +1,4 @@
+import { RegistrationsComponent } from './registrations/registrations.component';
 import { PromotionComponent } from './promotion/promotion.component';
 import { PasswordressetComponent } from './passwordresset/passwordresset.component';
 import { LoginComponent } from './login/login.component';
@@ -17,6 +18,7 @@ const routes: Routes = [{path: 'home', component: HomeComponent},
                         {path: 'qrgen', component: QrGenComponent,canActivate: [AngularFireAuthGuard], data: { authGuardPipe: ownerRole}},
                         {path: 'passwordresset', component: PasswordressetComponent},
                         {path: 'promotion', component: PromotionComponent},
+                        {path: 'registration', component: RegistrationsComponent},
 
                         {path: 'login', component: LoginComponent},
                         {path: '', component: HomeComponent}

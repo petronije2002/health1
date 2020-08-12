@@ -17,8 +17,8 @@ const ownerRole = () => pipe(customClaims, map(claims => claims.role === "owner"
 const routes: Routes = [{path: 'home', component: HomeComponent},
                         {path: 'qrgen', component: QrGenComponent,canActivate: [AngularFireAuthGuard], data: { authGuardPipe: ownerRole}},
                         {path: 'passwordresset', component: PasswordressetComponent},
-                        {path: 'promotion', component: PromotionComponent},
-                        {path: 'registration', component: RegistrationsComponent},
+                        {path: 'promotion', component: PromotionComponent,canActivate: [AngularFireAuthGuard], data: { authGuardPipe: ownerRole}},
+                        {path: 'registration', component: RegistrationsComponent,canActivate: [AngularFireAuthGuard], data: { authGuardPipe: ownerRole}},
 
                         {path: 'login', component: LoginComponent},
                         {path: '', component: HomeComponent}

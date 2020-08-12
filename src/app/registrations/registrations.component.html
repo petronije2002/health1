@@ -3,16 +3,17 @@
 </div>
 
 
-<div fxLayout="row">
+<div fxLayout="column" fxLayoutAlign="space-evenly strech">
 
-  <div class="controls" fxFlex="25%" fxLayout="column" fxLayoutAlign="space-evenly strech">
+  <div class="controls" fxFlex="25%" fxLayout="column" >
     <div fxFlex="10%">
       <form [formGroup]="form_">
         <mat-form-field>
           <mat-placeholder>Registration date</mat-placeholder>
-          <input matInput [matDatepicker]="picker" [min]="startDate" [max]="todayDate" formControlName="date_">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker (ngModelChange)="testFunction()" #picker></mat-datepicker>
+          <input class="inputField" matInput [matDatepicker]="picker" [min]="startDate" [max]="todayDate"
+            formControlName="date_">
+          <mat-datepicker-toggle color="accent" matSuffix [for]="picker"> Date</mat-datepicker-toggle>
+          <mat-datepicker  (ngModelChange)="testFunction()" #picker></mat-datepicker>
         </mat-form-field>
       </form>
     </div>
@@ -21,10 +22,20 @@
       <br>
       <br>
       <br>
-      <br>
+      
 
-      <button mat-raised-button color="accent" (click)="testFunction()" [disabled]="!form_.valid">Get
+      <button  mat-raised-button color="accent" (click)="testFunction()" [disabled]="!form_.valid">Get
         Registrations</button>
+
+        <br>
+        <br>
+
+        <button mat-raised-button color="primary" (click)="exportexcel1()" >Export as Excel</button> -->
+
+
+      <br>
+      <br>
+      <br>
     </div>
     <div fxFlex></div>
 
@@ -34,10 +45,10 @@
   <div fxFlex>
 
     <div class="table">
-      <mat-table  id="ExampleTable" [dataSource]="dataSource" class="mat-elevation-z8">
+      <mat-table  id="tableTable" #table    [dataSource]="dataSource"  class = "mat-elevation-z8" >
         <ng-container matColumnDef="date_">
           <mat-header-cell *matHeaderCellDef>Registration Date </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.date_.toDate()| date: 'medium'}} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{element.date_.toDate()|  date:'short':'nl'}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name_">
@@ -60,4 +71,15 @@
       </mat-table>
     </div>
   </div>
+
+  <br>
+  <br>
+  <br>
+
+
+
+    <mat-paginator fxFlex.gt-md="30%" fxFlex.lt-md="70%" [length]="totalDocs" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+      (page)="reloadPage($event)">
+    </mat-paginator>
+
 </div>

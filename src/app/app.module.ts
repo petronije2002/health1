@@ -33,30 +33,7 @@ import { PasswordressetComponent } from './passwordresset/passwordresset.compone
 import { PromotionComponent } from './promotion/promotion.component';
 import { RegistrationsComponent } from './registrations/registrations.component';
 
-// import { BrowserModule, HammerModule } from '@angular/platform-browser';
-// import { NgModule } from '@angular/core';
 
-// import { FormsModule, ReactiveFormsModule  } from "@angular/forms";
-
-
-// import { MaterialModule } from './material/material.module';
-// import { AppRoutingModule } from './app-routing.module';
-// import { AppComponent } from './app.component';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { MenuComponent} from './menu/menu.component'
-// import { HomeComponent } from './home/home.component';
-// import { QrGenComponent } from './qr-gen/qr-gen.component';
-// import { DialogComponent } from './dialog/dialog.component';
-
-// import { QRCodeModule } from 'angularx-qrcode';
-
-// import { RouterModule } from '@angular/router';
-// import { AngularFireStorageModule } from '@angular/fire/storage';
-// import { AngularFireModule } from '@angular/fire';
-// import { AngularFireDatabaseModule } from '@angular/fire/database';
-// import { environment } from 'src/environments/environment';
-// import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-// import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -90,7 +67,7 @@ import { RegistrationsComponent } from './registrations/registrations.component'
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     HttpClientModule,
-
+    
    
   ],
   providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }

@@ -11,6 +11,9 @@
 
                 <a mat-list-item [routerLink]="['/promotion']"  (click)="sidenav.toggle()"> Promotion </a>
 
+                <a mat-menu-item [routerLink]="['/registration']" (click)="sidenav.toggle()"> Registrations</a>
+
+
             </mat-list>
         </mat-nav-list>
 
@@ -61,14 +64,14 @@
                     <button mat-menu-item [routerLink]="['/registration']" routerLinkActive="active">Registrations</button>
                 </mat-menu>
 
-                <button mat-button #menuButton [matMenuTriggerFor]="belowMenu" [ngClass]="this.selected == 2 ? 'tab_selected' : 'tab_unselected'" (click)="change(2)">Second Menu</button>
+                <!-- <button mat-button #menuButton [matMenuTriggerFor]="belowMenu" [ngClass]="this.selected == 2 ? 'tab_selected' : 'tab_unselected'" (click)="change(2)">Second Menu</button> -->
 
-                <mat-menu #belowMenu="matMenu" yPosition="below" class="dropDown">
+                <!-- <mat-menu #belowMenu="matMenu" yPosition="below" class="dropDown">
                     <button mat-menu-item [routerLink]="['/home']" routerLinkActive="active">Admin Page</button>
                     <button mat-menu-item [routerLink]="['/qrgen']" routerLinkActive="active"> QR Code Generator</button>
                     <button mat-menu-item [routerLink]="['/promotion']" routerLinkActive="active">Promotion</button>
                     <button mat-menu-item routerLink='' routerLinkActive="active">Menu Builder</button>
-                </mat-menu>
+                </mat-menu> -->
             </div>
 
             <div  fxFlex="50%" fxLayoutAlign="center center"> {{this.srv.restaurantName}}</div>
@@ -93,17 +96,26 @@
         
 
                
-            <div > 
-                  <video autoplay muted type="video/mp4" loop >
+            <div fxHide.lt-md > 
+                  <video   autoplay muted type="video/mp4" loop >
 
-                    <source src="./../../assets/video.mp4" >
+                    <source src="./../../assets/bck_blue.mp4" >
         
-                </video>  
+                </video> 
+
+        
                 
                 <router-outlet></router-outlet> 
 
             </div>
-        
+            
+            <div  class="background123"> 
+                
+
+              <router-outlet></router-outlet> 
+
+            </div>
+      
            
             
 

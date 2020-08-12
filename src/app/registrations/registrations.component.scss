@@ -11,6 +11,18 @@
     
 }
 
+mat-datepicker{
+    color: white 
+
+}
+input{
+    color: white !important
+}
+
+mat-placeholder{
+    color: white !important
+}
+
 mat-table {
     padding:10px;
    
@@ -25,5 +37,15 @@ button{
 }
 .controls{
     margin-left: 20px;
+}
+
+mat-paginator{
+    background-color: white !important ;
+    
+
+    border-radius: 5px ;
+
+    z-index: 6;
+
 }
 

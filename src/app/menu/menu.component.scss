@@ -36,6 +36,27 @@ video{
 
 
 }
+
+.background123{
+    
+   
+        
+    
+       
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    // width: 100%;
+    // z-index: 0;
+    height: 100vh;
+    background-image: url("./../../assets/better_background.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+   
+   
+
+}
 mat-list{
     
     padding: 10px;

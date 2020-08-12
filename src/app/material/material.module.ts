@@ -15,6 +15,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatTableModule} from '@angular/material/table';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDialogModule,
     FlexLayoutModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatPaginatorModule,
 
 
   ],
@@ -53,7 +55,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDialogModule,
     FlexLayoutModule,
     MatTableModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatPaginatorModule,
   ],
   providers:[MatNativeDateModule]
 

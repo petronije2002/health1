@@ -30,7 +30,7 @@
         <br>
         <br>
 
-        <button mat-raised-button color="primary" (click)="exportexcel1()" >Export as Excel</button> -->
+        <button mat-raised-button color="primary" (click)="exportexcel1()"  [disabled]="this.dataSource.data.length==0">Export as Excel</button> -->
 
 
       <br>

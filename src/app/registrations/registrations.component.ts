@@ -109,6 +109,8 @@ export class RegistrationsComponent implements OnInit   {
 
 
         tmp_export_date.push(el)
+
+
        })
 
        
@@ -125,6 +127,11 @@ export class RegistrationsComponent implements OnInit   {
 
        /* save to file */
        XLSX.writeFile(wb, 'testing.xlsx');
+
+
+       this.form_.reset()
+
+       this.dataSource.data = []
 			
     }
 

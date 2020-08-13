@@ -2,7 +2,7 @@ import { map, timestamp } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from './../auth.service';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { NgForm } from '@angular/forms'
@@ -20,8 +20,15 @@ import { CdkTableExporterModule } from 'cdk-table-exporter';
   templateUrl: './registrations.component.html',
   styleUrls: ['./registrations.component.scss']
 })
-export class RegistrationsComponent implements OnInit   {
+export class RegistrationsComponent implements OnInit, AfterViewInit  {
+
+  @ViewChild('picker') picker: MatDatepicker<Date>
+
+
   @ViewChild('table') table: ElementRef;
+
+
+  
 
 
   private registrationsCollection: AngularFirestoreCollection<Registration>
@@ -63,8 +70,7 @@ export class RegistrationsComponent implements OnInit   {
     this.registrationsCollection = this.srv.db.collection('restaurants').doc(sessionStorage.getItem('restaurantID')).collection<Registration>('registrations');
 
     // this.registrationsCollection.valueChanges().subscribe(res=>{ this.totalDocs =  res.entries.length})
-
-
+    
   }
 
 
@@ -75,12 +81,25 @@ export class RegistrationsComponent implements OnInit   {
 
   displayedColumns: string[] = ['date_', 'name_', 'email_','phone_'];
 
-  
+  ngAfterViewInit(){
+
+
+    setTimeout(()=>{
+      this.picker. select(new Date())
+    },500)
+
+
+
+  }
+
   ngOnInit(){
     let d=new Date()
     d.setDate(d.getDate()-21)
 
     this.startDate=d
+
+
+
   }
 
   exportexcel1(): void 

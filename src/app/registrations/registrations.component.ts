@@ -41,10 +41,10 @@ export class RegistrationsComponent implements OnInit, AfterViewInit  {
   showButton: boolean = false
 
   totalDocs: number = 0
-  pageSize:number =2
+  pageSize:number = 10
   pageIndex :number = 0
   previousIndex : number = 0
-  pageSizeOptions = [1,2,5,10,25]
+  pageSizeOptions = [10,25,100]
 
   theLastOneIndex
 

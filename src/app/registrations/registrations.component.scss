@@ -8,13 +8,25 @@
     
     z-index: 1;
     opacity: 0.65;
+
+    height: 300px;
     
 }
 
+
+.example-table-container {
+    position: relative;
+    max-height: 350px;
+    overflow: auto;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
 mat-datepicker{
     color: white 
-
 }
+
+
 input{
     color: white !important
 }
@@ -25,15 +37,11 @@ mat-placeholder{
 
 mat-table {
     padding:10px;
-   
     border-radius: 5px ;
-    
-
-
 }
 
 button{
-    z-index: 5;
+    z-index: 3;
 }
 .controls{
     margin-left: 20px;
@@ -41,6 +49,8 @@ button{
 
 mat-paginator{
     background-color: white !important ;
+
+    padding: 10px !important;
     
 
     border-radius: 5px ;

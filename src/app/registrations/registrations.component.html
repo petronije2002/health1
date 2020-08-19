@@ -44,10 +44,10 @@
 
   <div fxFlex>
 
-    <div class="table">
+    <div class="example-table-container">
       <mat-table  id="tableTable" #table    [dataSource]="dataSource"  class = "mat-elevation-z8" >
         <ng-container matColumnDef="date_">
-          <mat-header-cell *matHeaderCellDef>Registration Date </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef >Registration Date </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.date_.toDate()|  date:'short':'nl'}} </mat-cell>
         </ng-container>
 
@@ -66,7 +66,7 @@
           <mat-cell *matCellDef="let element"> {{element.phone_}} </mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
     </div>

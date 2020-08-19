@@ -69,8 +69,23 @@ export class AuthService implements OnInit {
     private dialog: MatDialog,
     public storage: AngularFireStorage
   ) { 
+
+
+    this.auth.onIdTokenChanged((usr)=>{
+      usr.getIdToken(true).then(ee=>{console.log('refreshed')})
+
+    },error=>{console.log('Expired?, please check it', error);
+      this.signOut()
+    })
+
+    
+
+
     this.auth.onAuthStateChanged((usr)=>{
       if(usr){
+
+        console.log(usr.refreshToken)
+
         console.log("USER IS LOGGED IN")
       }else{
         console.log("USER IS SIGNED OUT")
@@ -155,8 +170,6 @@ export class AuthService implements OnInit {
 
       this.initials = this.userName.split(" ").map((n)=>n[0]).join(".")
 
-      
-
       sessionStorage.setItem('restaurantID',decoded_.claims.restaurantID)
       sessionStorage.setItem('restaurantName',decoded_.claims.restaurantName)
       sessionStorage.setItem('role',decoded_.claims.role)
@@ -182,6 +195,8 @@ export class AuthService implements OnInit {
 
   downloadFile(){
 
+    this.auth.currentUser.then(usr => {usr.getIdToken(true)
+
     let restID = sessionStorage.getItem('restaurantID')
 
     // let ref1 = this.storage.storage.ref(restID).child('images').child('document.png')
@@ -198,7 +213,9 @@ export class AuthService implements OnInit {
       
 
 
-    },500)}
+    },500)
+  })
+  }
 
 
 

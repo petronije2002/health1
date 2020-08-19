@@ -39,7 +39,8 @@ export interface tokenRequest{
     date_: Date ;
     phone_: string;
     email_: string;
-    name_: string
+    name_: string;
+    uuid_: string
 
 
   }

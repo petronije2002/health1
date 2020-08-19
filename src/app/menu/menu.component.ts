@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
   color
   reason = '';
 
-  isAdmin = true
+  // isAdmin = true
   
   ngOnInit(): void {
   }

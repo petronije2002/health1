@@ -79,7 +79,7 @@ export class RegistrationsComponent implements OnInit, AfterViewInit  {
 
   dataSource = new MatTableDataSource<Registration>([]);
 
-  displayedColumns: string[] = ['date_', 'name_', 'email_','phone_'];
+  displayedColumns: string[] = ['date_', 'name_', 'email_','phone_','uuid_'];
 
   ngAfterViewInit(){
 
@@ -119,7 +119,7 @@ export class RegistrationsComponent implements OnInit, AfterViewInit  {
         // new Date(el.date_.getSeconds).toDateString();
 
         delete el['date_']
-        delete el['uuid_']
+        // delete el['uuid_']
 
         // console.log("SEE IT", tmp_date.toLocaleString() )
 
@@ -145,7 +145,7 @@ export class RegistrationsComponent implements OnInit, AfterViewInit  {
        XLSX.utils.book_append_sheet(wb, workSheet, 'Sheet1');
 
        /* save to file */
-       XLSX.writeFile(wb, 'testing.xlsx');
+       XLSX.writeFile(wb, 'barpassExport.xlsx');
 
 
        this.form_.reset()

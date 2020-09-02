@@ -72,6 +72,7 @@ export class AuthService implements OnInit {
 
 
     this.auth.onIdTokenChanged((usr)=>{
+      
       usr.getIdToken(true).then(ee=>{console.log('refreshed')})
 
     },error=>{console.log('Expired?, please check it', error);
